@@ -67,6 +67,7 @@ After making the request, consume messages from the topic:
 
 ### **1-b**
 
+Apache Airflow can be used to schedule the process daily. I think Airflow is one of the best orchestration tools in terms of UI and ease of use. A basic DAG can be defined and used to run the process. In the Airflow UI, all runs and their statuses are displayed. Additionally, sensors and alarms can be added to monitor the runs daily.
 
 ### **2-a**
 
