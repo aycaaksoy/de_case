@@ -24,7 +24,8 @@ Start kafka and zookeeper :
 
 Create kafka topic:
 
-    kafka-topics.sh --create --topic order_delivery_statistics --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+    docker exec -it kafka kafka-topics.sh --create --topic order_delivery_statistics --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+
 
 Create a database in postgresql and run the create script:
 
