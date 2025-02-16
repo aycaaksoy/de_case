@@ -70,7 +70,10 @@ After making the request, consume messages from the topic:
 Apache Airflow can be used to schedule the process daily. I think Airflow is one of the best orchestration tools in terms of UI and ease of use. A basic DAG can be defined and used to run the process. In the Airflow UI, all runs and their statuses are displayed. Additionally, sensors and alarms can be added to monitor the runs daily.
 
 ### **2-a**
-
+To be able to get realtime changes from a relational database such as postgresql in at most 15 minutes latency, stream processing is necessary and a cdc tool must be used. I would use Debezium since it minimizes the load on the db. Instead of querying the tables constantly it checks transaction logs to captures changes from the relational database. This is why 2.000.000 change in a day will not create a performance issue on the db. I would use spark streaming to consume and transform messages from Kafka and writing them to the data warehous let's say Bigquery.
 ### **2-b**
+Stream processing is the appropriate approach due to the requirement to transfer data with a maximum of 15 minute latency.
 
 ### **2-c**
+Running this stream process on newer apache airflow versions with a @continuous schedule can help monitoring the job. This way we can see how long the process have been running. Moreover, we can log some information on the airflow task ui, such as how many rows are ingested etc. Running @continuous schedule
+will run the script immediately if the process fails because of a server failure or any other issue. Also, to be able to monitor the entire data pipeline Prometheus and Grafana can be used. Prometheus is a time-series database and monitoring system designed for real-time metric collection. Prometheus scrapes metrics from the relational database and Kafka. Then, Grafana connects to Prometheus and visualise the metrics so we can monitor the metrics data. Prometheus has ability to trigger alerts and notifications  when anomalies are detected.
